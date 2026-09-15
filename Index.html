@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #141e30, #243b55);
+    }
+
+    .login-box {
+      width: 90%;
+      max-width: 380px;
+      padding: 35px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 9px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #243b55;
+    }
+
+    .password-area {
+      position: relative;
+    }
+
+    .password-area input {
+      padding-right: 65px;
+    }
+
+    .show-btn {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #243b55;
+      font-weight: bold;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 9px;
+      background: #243b55;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-btn:hover {
+      background: #141e30;
+    }
+
+    #message {
+      text-align: center;
+      margin-top: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-box">
+    <h1>Welcome Back</h1>
+    <p class="subtitle">Login to continue</p>
+
+    <form id="loginForm">
+
+      <label for="username">Username or Email</label>
+      <input
+        type="text"
+        id="username"
+        placeholder="Enter username or email"
+        required
+      >
+
+      <label for="password">Password</label>
+
+      <div class="password-area">
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter password"
+          required
+        >
+
+        <button
+          type="button"
+          class="show-btn"
+          onclick="showPassword()"
+        >
+          Show
+        </button>
+      </div>
+
+      <button type="submit" class="login-btn">
+        Login
+      </button>
+
+      <p id="message"></p>
+
+    </form>
+  </div>
+
+  <script>
+    function showPassword() {
+      const password = document.getElementById("password");
+      const button = document.querySelector(".show-btn");
+
+      if (password.type === "password") {
+        password.type = "text";
+        button.textContent = "Hide";
+      } else {
+        password.type = "password";
+        button.textContent = "Show";
+      }
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const message = document.getElementById("message");
+
+      if (username === "admin" && password === "12345") {
+        message.textContent = "Login successful!";
+        message.style.color = "green";
+      } else {
+        message.textContent = "Invalid username or password";
+        message.style.color = "red";
+      }
+    });
+  </script>
+
+</body>
+</html>
